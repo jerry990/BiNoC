@@ -10,7 +10,7 @@ module BiNoc_2_2(
   logic westgnt_HP_LP_00_e,westgnt_LP_HP_00_e,
         eastgnt_LP_HP_10_w,eastgnt_HP_LP_10_w;
 
-  
+  wire [31:0] packet,Packet_00_01_0,Packet_00_01_1;
   
   router n00(
   .clk(clk),
@@ -51,6 +51,17 @@ module BiNoc_2_2(
   .north_LP_input_req(1'bz),
   .south_LP_input_req(1'bz),
   .local_LP_input_req(local_LP_input_req_00),
+  
+  .west_HP_output_req(),
+  .west_LP_output_req(),
+  .east_HP_output_req(eastreq_HP_LP_00_w),
+  .east_LP_output_req(),
+  .north_HP_output_req(),
+  .north_LP_output_req(),
+  .south_HP_output_req(),
+  .south_LP_output_req(),
+  .local_HP_output_req(),
+  .local_LP_output_req(),
   
   .westPacket_0(),
   .westPacket_1(),
@@ -104,6 +115,17 @@ router n10(
   .north_LP_input_req(),
   .south_LP_input_req(),
   .local_LP_input_req(local_LP_input_req_10),
+  
+  .west_HP_output_req(),
+  .west_LP_output_req(),
+  .east_HP_output_req(),
+  .east_LP_output_req(),
+  .north_HP_output_req(),
+  .north_LP_output_req(),
+  .south_HP_output_req(),
+  .south_LP_output_req(),
+  .local_HP_output_req(),
+  .local_LP_output_req(),
   
   .westPacket_0(Packet_00_01_0),
   .westPacket_1(Packet_00_01_1),

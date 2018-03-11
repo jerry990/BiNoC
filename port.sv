@@ -22,7 +22,7 @@ module port ( input clk,
 			  input [31:0] PacketInPort8,
 			  input [31:0] PacketInPort9,
 			  input [3:0] sel,
-			  output [31:0] Packetout
+			  output logic [31:0] PacketOut
 			);		
   parameter port_num = 0;			
   parameter dataWidth = 32; 

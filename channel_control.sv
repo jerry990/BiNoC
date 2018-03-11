@@ -99,7 +99,7 @@ module channel_control(
 		  end
 		wait_s:
 		  begin
-		    LP_inout_select = 1'b1;
+		    LP_inout_select = 1'b0;
 		    if(LP_cnt < 3'b100)
 			  LP_ns = wait_s;
 			else

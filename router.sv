@@ -40,6 +40,18 @@ module router(
   input south_LP_input_req,
   input local_LP_input_req,
   
+  output logic west_HP_output_req,
+  output logic west_LP_output_req,
+  output logic east_HP_output_req,
+  output logic east_LP_output_req,
+  output logic north_HP_output_req, 
+  output logic north_LP_output_req,
+  output logic south_HP_output_req,
+  output logic south_LP_output_req,
+  output logic local_HP_output_req,
+  output logic local_LP_output_req,
+  
+  
   inout [31:0] westPacket_0,
   inout [31:0] westPacket_1,
   inout [31:0] eastPacket_0,
@@ -181,15 +193,20 @@ module router(
  // logic west_HP_input_req,east_HP_input_req,north_HP_input_req,south_HP_input_req,local_HP_input_req;
  // logic west_LP_input_req,east_LP_input_req,north_LP_input_req,south_LP_input_req,local_LP_input_req;
   //--------------------output req------------------
-  logic west_HP_output_req,east_HP_output_req,north_HP_output_req,south_HP_output_req,local_HP_output_req;
-  logic west_LP_output_req,east_LP_output_req,north_LP_output_req,south_LP_output_req,local_LP_output_req;
+//  logic west_HP_output_req,east_HP_output_req,north_HP_output_req,south_HP_output_req,local_HP_output_req;
+//  logic west_LP_output_req,east_LP_output_req,north_LP_output_req,south_LP_output_req,local_LP_output_req;
   //--------------------inout_select----------------
   logic west_HP_inout_select,east_HP_inout_select,north_HP_inout_select,south_HP_inout_select,local_HP_inout_select;
   logic west_LP_inout_select,east_LP_inout_select,north_LP_inout_select,south_LP_inout_select,local_LP_inout_select;
   //--------------------sel-------------------------
   logic [3:0] west_HP_sel,east_HP_sel,north_HP_sel,south_HP_sel,local_HP_sel;
   logic [3:0] west_LP_sel,east_LP_sel,north_LP_sel,south_LP_sel,local_LP_sel;
-  
+  //---------------------Packet_inter---------------
+  logic [31:0]  westPacket_in_0,westPacket_in_1,
+               eastPacket_in_0,eastPacket_in_1,
+			   northPacket_in_0,northPacket_in_1,
+               southPacket_in_0,southPacket_in_1,
+			   localPacket_in_0,localPacket_in_1;
   channel_control w_controller(
     .clk(clk),
     .rst(rst),
@@ -384,7 +401,7 @@ module router(
 	.PacketInPort8(localPacket_in_0),
 	.PacketInPort9(localPacket_in_1),
 	.sel(west_HP_sel),
-	.Packetout(westPacket_in_0)
+	.PacketOut(westPacket_in_0)
   );	
 
 port w_LP( 
@@ -416,7 +433,7 @@ port w_LP(
 	.PacketInPort8(localPacket_in_0),
 	.PacketInPort9(localPacket_in_1),
 	.sel(west_LP_sel),
-	.Packetout(westPacket_in_1)
+	.PacketOut(westPacket_in_1)
   );		
 
 port n_HP( 
@@ -448,7 +465,7 @@ port n_HP(
 	.PacketInPort8(localPacket_in_0),
 	.PacketInPort9(localPacket_in_1),
 	.sel(north_HP_sel),
-	.Packetout(northPacket_in_0)
+	.PacketOut(northPacket_in_0)
   );		
 
 port n_LP( 
@@ -480,7 +497,7 @@ port n_LP(
 	.PacketInPort8(localPacket_in_0),
 	.PacketInPort9(localPacket_in_1),
 	.sel(north_LP_sel),
-	.Packetout(northPacket_in_1)
+	.PacketOut(northPacket_in_1)
   );		
 
 port e_HP( 
@@ -512,7 +529,7 @@ port e_HP(
 	.PacketInPort8(localPacket_in_0),
 	.PacketInPort9(localPacket_in_1),
 	.sel(east_HP_sel),
-	.Packetout(eastPacket_in_0)
+	.PacketOut(eastPacket_in_0)
   );
 
 port e_LP( 
@@ -544,7 +561,7 @@ port e_LP(
 	.PacketInPort8(localPacket_in_0),
 	.PacketInPort9(localPacket_in_1),
 	.sel(east_LP_sel),
-	.Packetout(eastPacket_in_1)
+	.PacketOut(eastPacket_in_1)
   );
 
   port s_HP( 
@@ -576,7 +593,7 @@ port e_LP(
 	.PacketInPort8(localPacket_in_0),
 	.PacketInPort9(localPacket_in_1),
 	.sel(south_HP_sel),
-	.Packetout(southPacket_in_0)
+	.PacketOut(southPacket_in_0)
   );
   
   port s_LP( 
@@ -608,7 +625,7 @@ port e_LP(
 	.PacketInPort8(localPacket_in_0),
 	.PacketInPort9(localPacket_in_1),
 	.sel(south_LP_sel),
-	.Packetout(southPacket_in_1)
+	.PacketOut(southPacket_in_1)
   );
   port l_HP( 
     .clk(clk), 
@@ -639,7 +656,7 @@ port e_LP(
 	.PacketInPort8(localPacket_in_0),
 	.PacketInPort9(localPacket_in_1),
 	.sel(local_HP_sel),
-	.Packetout(localPacket_in_0)
+	.PacketOut(localPacket_in_0)
   );
   
   port l_LP( 
@@ -671,7 +688,7 @@ port e_LP(
 	.PacketInPort8(localPacket_in_0),
 	.PacketInPort9(localPacket_in_1),
 	.sel(local_LP_sel),
-	.Packetout(localPacket_in_1)
+	.PacketOut(localPacket_in_1)
   );
   
 endmodule
